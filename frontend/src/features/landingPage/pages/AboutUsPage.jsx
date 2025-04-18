@@ -7,7 +7,6 @@ export const AboutUsPage = () => {
 
   return (
     <>
-      {/* Encabezado Principal */}
       <div style={{ backgroundColor: pastelBlue }} className="text-dark text-center py-5">
         <Container>
           <h1 className="display-4 fw-bold mb-4">🐶 Conoce a Caninos SABS</h1>
@@ -16,7 +15,6 @@ export const AboutUsPage = () => {
         </Container>
       </div>
 
-      {/* Nuestra Historia */}
       <Container className="py-5">
         <Row className="align-items-center g-4">
           <Col md={6}>
@@ -46,8 +44,6 @@ export const AboutUsPage = () => {
           </Col>
         </Row>
       </Container>
-
-      {/* Misión, Visión y Valores */}
       <Container className="py-5">
         <Row className="g-4">
           <Col md={4}>
@@ -93,7 +89,7 @@ export const AboutUsPage = () => {
         </Row>
       </Container>
 
-      {/* Nuestro Equipo */}
+    
       <Container className="py-5">
         <Row className="align-items-center g-4">
           <Col md={6}>
@@ -123,7 +119,7 @@ export const AboutUsPage = () => {
         </Row>
       </Container>
 
-      {/* CTA Final */}
+     
       <Container className="text-center pb-5">
         <p className="fst-italic text-muted mb-3">
           Gracias por acompañarnos en este recorrido lleno de ladridos, colitas felices y mucho amor. 🐕

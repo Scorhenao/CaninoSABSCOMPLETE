@@ -7,7 +7,6 @@ export const HomePage = () => {
 
   return (
     <>
-      {/* Hero principal */}
       <div style={{ backgroundColor: pastelBlue }} className="text-dark text-center py-5">
         <Container>
           <h1 className="display-4 fw-bold mb-4">🐾 ¡Bienvenidos a Caninos SABS! 🐾</h1>
@@ -26,7 +25,6 @@ export const HomePage = () => {
         </Container>
       </div>
 
-      {/* Beneficios */}
       <Container className="py-5">
         <Row className="g-4 text-center">
           <Col md={4}>
@@ -63,8 +61,6 @@ export const HomePage = () => {
             </Card>
           </Col>
         </Row>
-
-        {/* CTA final */}
         <div className="text-center mt-5">
           <p className="fst-italic text-muted mb-3">
             En Caninos SABS, cuidamos a tu perro como tú lo harías. Conócenos mejor.
