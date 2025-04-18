@@ -116,6 +116,8 @@ yarn install
 
 ```
 
+npm install react-router-dom axios react-bootstrap bootstrap
+
 Este comando instalará `react`, `react-dom`, `react-router-dom`, `axios`, `react-bootstrap` y `bootstrap`.
 
 ### 3. **Configuración de la URL de la API**
