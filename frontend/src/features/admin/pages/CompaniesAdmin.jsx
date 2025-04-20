@@ -6,7 +6,7 @@ export const CompaniesAdmin = () => {
   const [companies, setCompanies] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [modalMode, setModalMode] = useState('create');
-  const [currentCompany, setCurrentCompany] = useState({ id: null, name: '', nit: '', address: '' });
+  const [currentCompany, setCurrentCompany] = useState({ id: null, name: '', nit: '', address: '', phone: '', email: '' });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -29,7 +29,7 @@ export const CompaniesAdmin = () => {
 
   const openCreateModal = () => {
     setModalMode('create');
-    setCurrentCompany({ id: null, name: '', nit: '', address: '' });
+    setCurrentCompany({ id: null, name: '', nit: '', address: '', phone: '', email: '' });
     setShowModal(true);
   };
 
@@ -95,25 +95,27 @@ export const CompaniesAdmin = () => {
   return (
     <Container className="mt-4">
       <Row className="mb-3 d-flex justify-content-between align-items-center">
-        <Col xs="auto">
+        <Col xs={12} md="auto">
           <h2 className="mb-0">Gestión de Compañías</h2>
         </Col>
-        <Col xs="auto">
-          <Button variant="primary" onClick={openCreateModal}>
+        <Col xs={12} md="auto" className="mt-2 mt-md-0">
+          <Button variant="primary" onClick={openCreateModal} className="w-100 w-md-auto">
             Crear Nueva Compañía
           </Button>
         </Col>
       </Row>
 
       <div className="table-responsive">
-        <Table striped bordered hover>
+        <Table striped bordered hover className="align-middle">
           <thead>
             <tr>
               <th>ID</th>
-              <th>Nombre de la Compañía</th>
-              <th>NIT</th>
-              <th>Dirección</th>
-              <th style={{ minWidth: '120px' }}>Acciones</th>
+              <th>Nombre</th>
+              <th className="d-none d-md-table-cell">NIT</th>
+              <th className="d-none d-md-table-cell">Dirección</th>
+              <th className="d-none d-lg-table-cell">Teléfono</th>
+              <th className="d-none d-lg-table-cell">Email</th>
+              <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
@@ -121,13 +123,15 @@ export const CompaniesAdmin = () => {
               <tr key={company.id}>
                 <td>{company.id}</td>
                 <td>{company.name}</td>
-                <td>{company.nit}</td>
-                <td>{company.address}</td>
-                <td className="d-flex gap-2 flex-wrap">
-                  <Button variant="info" size="sm" className="mb-1 mb-md-0" onClick={() => openEditModal(company)}>
+                <td className="d-none d-md-table-cell">{company.nit}</td>
+                <td className="d-none d-md-table-cell">{company.address}</td>
+                <td className="d-none d-lg-table-cell">{company.phone}</td>
+                <td className="d-none d-lg-table-cell">{company.email}</td>
+                <td className="d-flex gap-2 flex-column flex-md-row flex-wrap">
+                  <Button variant="info" size="sm" className="mb-1 mb-md-0 w-100 w-md-auto" onClick={() => openEditModal(company)}>
                     Editar
                   </Button>
-                  <Button variant="danger" size="sm" className="mb-1 mb-md-0" onClick={() => handleDelete(company.id)}>
+                  <Button variant="danger" size="sm" className="mb-1 mb-md-0 w-100 w-md-auto" onClick={() => handleDelete(company.id)}>
                     Eliminar
                   </Button>
                 </td>
@@ -137,7 +141,7 @@ export const CompaniesAdmin = () => {
         </Table>
       </div>
 
-      <Modal show={showModal} onHide={closeModal}>
+      <Modal show={showModal} onHide={closeModal} centered>
         <Modal.Header closeButton>
           <Modal.Title>{modalMode === 'create' ? 'Crear Nueva Compañía' : 'Editar Compañía'}</Modal.Title>
         </Modal.Header>
@@ -172,12 +176,30 @@ export const CompaniesAdmin = () => {
                 onChange={handleInputChange}
               />
             </Form.Group>
-            <Button variant="primary" type="submit">
+            <Form.Group className="mb-3">
+              <Form.Label>Teléfono</Form.Label>
+              <Form.Control
+                type="text"
+                name="phone"
+                value={currentCompany.phone}
+                onChange={handleInputChange}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Email</Form.Label>
+              <Form.Control
+                type="email"
+                name="email"
+                value={currentCompany.email}
+                onChange={handleInputChange}
+              />
+            </Form.Group>
+            <Button variant="primary" type="submit" className="w-100">
               {modalMode === 'create' ? 'Crear' : 'Guardar Cambios'}
             </Button>
           </Form>
         </Modal.Body>
-        <Modal.Footer>
+        <Modal.Footer className="justify-content-end">
           <Button variant="secondary" onClick={closeModal}>
             Cancelar
           </Button>
