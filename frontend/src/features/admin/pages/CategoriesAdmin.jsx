@@ -6,7 +6,7 @@ import {
     updateCategory,
     deleteCategory,
 } from '../services/categories.service';
-
+//
 export const CategoriesAdmin = () => {
     const [categories, setCategories] = useState([]);
     const [showModal, setShowModal] = useState(false);

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Table, Button, Modal, Form, Alert, Row, Col } from 'react-bootstrap';
 import { getCompanies, postCompanies, updateCompany, deleteCompany } from '../services/companies.service';
-
+//
 export const CompaniesAdmin = () => {
   const [companies, setCompanies] = useState([]);
   const [showModal, setShowModal] = useState(false);
