@@ -7,7 +7,7 @@ import {
   deleteProduct,
 } from '../services/product.service';
 import { getCategories } from '../services/categories.service';
-
+//
 const styles = {
   longTextCell: {
     maxWidth: '150px',
