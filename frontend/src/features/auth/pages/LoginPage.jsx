@@ -17,7 +17,6 @@ export const LoginPage = () => {
         email: email,
         password: password,
       };
-      console.log('Credenciales enviadas');
       const response = await login(credentials);
       localStorage.setItem('token', response.token);
       navigate('/admin');
