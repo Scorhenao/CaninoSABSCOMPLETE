@@ -3,8 +3,7 @@ const path = import.meta.env.VITE_MAIN_PATH;
 
 export const login = async (credentials) => {
   try {
-    const response = await axios.post(`${path}/login`, credentials);
-    console.log('Respuesta del Login:', response.data); 
+    const response = await axios.post(`${path}/login`, credentials); 
     localStorage.setItem('token', response.data.token);
     localStorage.setItem('fullName', response.data.fullName);
     return response.data;
