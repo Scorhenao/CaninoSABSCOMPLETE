@@ -4,7 +4,7 @@ const path = import.meta.env.VITE_MAIN_PATH;
 export const login = async (credentials) => {
   try {
     const response = await axios.post(`${path}/login`, credentials);
-    console.log('Respuesta del Login:', response.data); // <--- Agrega esto
+    console.log('Respuesta del Login:', response.data); 
     localStorage.setItem('token', response.data.token);
     localStorage.setItem('fullName', response.data.fullName);
     return response.data;
@@ -15,14 +15,14 @@ export const login = async (credentials) => {
 };
 
 export const isAuthenticated = () => {
-  // Lógica para verificar si el usuario está autenticado
+  
   const token = localStorage.getItem('token');
   return !!token;
 };
 
 export const logout = () => {
-  // Lógica para cerrar la sesión
+  
   localStorage.removeItem('token');
   localStorage.removeItem('fullName');
-  // Puedes agregar aquí cualquier otra lógica de limpieza necesaria (ej: limpiar cookies, resetear estados globales, etc.)
+  
 };
