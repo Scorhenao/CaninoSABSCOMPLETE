@@ -24,6 +24,7 @@ import { AdminLayout } from '../layouts/AdminLayout';
 
 
 import { NavigationBar } from '../shared/components/NavigationBar';
+import { NotFoundPage } from '../shared/components/404';
 
 
 const PrivateRoute = ({ children }) => {
@@ -52,6 +53,8 @@ const AppRouter = () => {
           <Route path="productos" element={<ProductsAdmin />} />
           <Route path="categorias" element={<CategoriesAdmin />} /> 
         </Route>
+        <Route path="*" element={<NotFoundPage />} />
+
       </Routes>
     </>
   );
