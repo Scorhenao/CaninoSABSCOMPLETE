@@ -13,6 +13,8 @@ export const LoginPage = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setError("");
+
+    // Validaciones
     if (!email) {
       setError("El correo es obligatorio");
       return;

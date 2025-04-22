@@ -17,4 +17,6 @@ router.put('/:id', userController.updateUser);
 // Eliminar usuario
 router.delete('/:id', userController.deleteUser);
 
+// Verificar si el email ya existe
+router.get('/check-email', userController.checkEmailExists);
 module.exports = router;
