@@ -63,7 +63,6 @@ export const ProductsAdmin = () => {
     setError(null);
     try {
       const response = await getProducts();
-      console.log("Data recibida en ProductsAdmin:", response);
       if (Array.isArray(response)) {
         setProducts(response);
       } else if (response && Array.isArray(response.data)) {

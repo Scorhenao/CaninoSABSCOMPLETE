@@ -1,6 +1,6 @@
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs');
-const User = require('../models/users.models');
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
+const User = require("../models/users.models");
 
 // Función para el login de usuario
 const login = async (req, res) => {
@@ -12,13 +12,17 @@ const login = async (req, res) => {
 
     // Verificamos si el usuario existe
     if (!user) {
-      return res.status(400).json({ message: 'Usuario o contraseña incorrectos' });
+      return res
+        .status(400)
+        .json({ message: "Usuario o contraseña incorrectos" });
     }
 
     // Verificamos si la contraseña es correcta
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return res.status(400).json({ message: 'Usuario o contraseña incorrectos' });
+      return res
+        .status(400)
+        .json({ message: "Usuario o contraseña incorrectos" });
     }
 
     // Creamos el JWT
@@ -29,17 +33,19 @@ const login = async (req, res) => {
     };
 
     // Generamos el token con una duración de 1 hora
-    const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
+    const token = jwt.sign(payload, process.env.JWT_SECRET, {
+      expiresIn: "1h",
+    });
 
     // Respondemos con el token
     res.json({
-      message: 'Login exitoso',
+      message: "Login exitoso",
       token,
-      fullName: user.fullName //Añadimos a la Api para poder tener el nombre del Usuario en la barra de navegación del Admin
+      fullName: user.fullName, //Añadimos a la Api para poder tener el nombre del Usuario en la barra de navegación del Admin
     });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Error interno del servidor' });
+    res.status(500).json({ message: "Error interno del servidor" });
   }
 };
 

@@ -94,7 +94,7 @@ Ahora deberías poder explorar la base de datos `api705` en DBeaver utilizando l
 
 npm run start
 
-### ---------------------------------------------------------------------------------------------------------------
+### -------------------------------------------------------------------------------------------------------
 
 ## ⚛️ Instalación y Ejecución del Frontend
 
@@ -115,6 +115,8 @@ npm install
 yarn install
 
 ```
+
+npm install react-router-dom axios react-bootstrap bootstrap
 
 Este comando instalará `react`, `react-dom`, `react-router-dom`, `axios`, `react-bootstrap` y `bootstrap`.
 
