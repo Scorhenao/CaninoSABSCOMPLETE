@@ -58,17 +58,19 @@ export const RolesAdmin = () => {
     setCurrentRole(prevRole => ({ ...prevRole, [name]: value }));
   };
 
-  const validateRole = (role) => {
+  const validateRole = (role, currentRoles, isEdit = false) => {
     const errors = {};
     if (!role.name.trim()) {
       errors.name = 'El nombre del rol es requerido';
+    } else if (currentRoles.some(r => r.name.toLowerCase() === role.name.toLowerCase() && (isEdit ? r.id !== role.id : true))) {
+      errors.name = 'Ya existe un rol con este nombre';
     }
     return errors;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const errors = validateRole(currentRole);
+    const errors = validateRole(currentRole, roles);
     setValidationErrors(errors);
 
     if (Object.keys(errors).length === 0) {
@@ -88,15 +90,19 @@ export const RolesAdmin = () => {
   };
 
   const handleConfirmEdit = async () => {
-    try {
-      await updateRole(itemToEdit.id, itemToEdit);
-      fetchRoles();
-      closeModal();
-      setShowEditConfirmationModal(false);
-      setItemToEdit(null);
-      setOriginalRoleData({});
-    } catch (err) {
-      setError(err.message || 'Error al actualizar rol');
+    const errors = validateRole(itemToEdit, roles, true);
+    setValidationErrors(errors);
+    if (Object.keys(errors).length === 0) {
+      try {
+        await updateRole(itemToEdit.id, itemToEdit);
+        fetchRoles();
+        closeModal();
+        setShowEditConfirmationModal(false);
+        setItemToEdit(null);
+        setOriginalRoleData({});
+      } catch (err) {
+        setError(err.message || 'Error al actualizar rol');
+      }
     }
   };
 
