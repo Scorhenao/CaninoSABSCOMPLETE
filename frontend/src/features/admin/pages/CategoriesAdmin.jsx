@@ -6,7 +6,7 @@ import {
     updateCategory,
     deleteCategory,
 } from '../services/categories.service';
-
+//
 export const CategoriesAdmin = () => {
     const [categories, setCategories] = useState([]);
     const [showModal, setShowModal] = useState(false);
@@ -24,7 +24,6 @@ export const CategoriesAdmin = () => {
         setError(null);
         try {
             const response = await getCategories(); 
-            console.log("Data recibida en CategoriesAdmin:", response); 
 
             if (Array.isArray(response)) {
                 setCategories(response);
