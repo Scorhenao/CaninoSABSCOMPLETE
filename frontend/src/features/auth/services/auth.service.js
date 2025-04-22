@@ -13,6 +13,18 @@ export const login = async (credentials) => {
   }
 };
 
+export const checkEmailExists = async (email) => {
+  try {
+    const response = await axios.get(`${path}/users/check-email`, {
+      params: { email },
+    });
+    return response.data.exists;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
 export const isAuthenticated = () => {
   
   const token = localStorage.getItem('token');

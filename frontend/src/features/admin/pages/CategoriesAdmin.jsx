@@ -24,7 +24,6 @@ export const CategoriesAdmin = () => {
         setError(null);
         try {
             const response = await getCategories(); 
-            console.log("Data recibida en CategoriesAdmin:", response); 
 
             if (Array.isArray(response)) {
                 setCategories(response);

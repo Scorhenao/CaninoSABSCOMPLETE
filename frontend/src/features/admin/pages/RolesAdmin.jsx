@@ -201,7 +201,12 @@ export const RolesAdmin = () => {
                 name="description"
                 value={currentRole.description}
                 onChange={handleInputChange}
+                isInvalid={!!validationErrors.description}
+                required
               />
+              <Form.Control.Feedback type="invalid">
+                {validationErrors.description}
+              </Form.Control.Feedback>
             </Form.Group>
             <Button variant="primary" type="submit">
               {modalMode === 'create' ? 'Crear' : 'Guardar Cambios'}
