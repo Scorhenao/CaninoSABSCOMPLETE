@@ -58,19 +58,22 @@ export const RolesAdmin = () => {
     setCurrentRole(prevRole => ({ ...prevRole, [name]: value }));
   };
 
-  const validateRole = (role, currentRoles, isEdit = false) => {
+  const validateRole = (role, existingRoles, isEdit = false) => {
     const errors = {};
     if (!role.name.trim()) {
       errors.name = 'El nombre del rol es requerido';
-    } else if (currentRoles.some(r => r.name.toLowerCase() === role.name.toLowerCase() && (isEdit ? r.id !== role.id : true))) {
+    } else if (existingRoles.some(r => r.name.toLowerCase() === role.name.toLowerCase() && (isEdit ? r.id !== role.id : true))) {
       errors.name = 'Ya existe un rol con este nombre';
+    }
+    if (!role.description.trim()) {
+      errors.description = 'La descripción del rol es requerida';
     }
     return errors;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const errors = validateRole(currentRole, roles);
+    const errors = validateRole(currentRole, roles, modalMode === 'edit');
     setValidationErrors(errors);
 
     if (Object.keys(errors).length === 0) {
@@ -90,19 +93,15 @@ export const RolesAdmin = () => {
   };
 
   const handleConfirmEdit = async () => {
-    const errors = validateRole(itemToEdit, roles, true);
-    setValidationErrors(errors);
-    if (Object.keys(errors).length === 0) {
-      try {
-        await updateRole(itemToEdit.id, itemToEdit);
-        fetchRoles();
-        closeModal();
-        setShowEditConfirmationModal(false);
-        setItemToEdit(null);
-        setOriginalRoleData({});
-      } catch (err) {
-        setError(err.message || 'Error al actualizar rol');
-      }
+    try {
+      await updateRole(itemToEdit.id, itemToEdit);
+      fetchRoles();
+      closeModal();
+      setShowEditConfirmationModal(false);
+      setItemToEdit(null);
+      setOriginalRoleData({});
+    } catch (err) {
+      setError(err.message || 'Error al actualizar rol');
     }
   };
 
@@ -201,7 +200,12 @@ export const RolesAdmin = () => {
                 name="description"
                 value={currentRole.description}
                 onChange={handleInputChange}
+                isInvalid={!!validationErrors.description}
+                required
               />
+              <Form.Control.Feedback type="invalid">
+                {validationErrors.description}
+              </Form.Control.Feedback>
             </Form.Group>
             <Button variant="primary" type="submit">
               {modalMode === 'create' ? 'Crear' : 'Guardar Cambios'}
