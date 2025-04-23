@@ -4,6 +4,7 @@ const path = import.meta.env.VITE_MAIN_PATH;
 export const postProducts = async (productData) => {
   try {
     const response = await axios.post(`${path}/products`, productData);
+    
     return response.data;
   } catch (error) {
     console.error(error);
