@@ -174,6 +174,7 @@ export const CompaniesAdmin = () => {
                 name="address"
                 value={currentCompany.address}
                 onChange={handleInputChange}
+                required
               />
             </Form.Group>
             <Form.Group className="mb-3">
@@ -183,6 +184,7 @@ export const CompaniesAdmin = () => {
                 name="phone"
                 value={currentCompany.phone}
                 onChange={handleInputChange}
+                required
               />
             </Form.Group>
             <Form.Group className="mb-3">
@@ -192,6 +194,7 @@ export const CompaniesAdmin = () => {
                 name="email"
                 value={currentCompany.email}
                 onChange={handleInputChange}
+                required
               />
             </Form.Group>
             <Button variant="primary" type="submit" className="w-100">
