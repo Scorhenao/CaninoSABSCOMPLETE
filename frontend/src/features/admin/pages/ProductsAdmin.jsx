@@ -121,7 +121,7 @@ export const ProductsAdmin = () => {
   };
 
   const openEditModal = (product) => {
-      setModalMode("edit");
+    setModalMode("edit");
     setCurrentProduct({
       id: product.id,
       name: product.name,
@@ -145,6 +145,15 @@ export const ProductsAdmin = () => {
 
   const closeModal = () => {
     setShowModal(false);
+    setFormError("");
+    setCurrentProduct({
+      name: "",
+      description: "",
+      price: "",
+      stock: "",
+      categoryId: "",
+      imageUrl: "",
+    });
   };
 
   const handleInputChange = (e) => {
@@ -177,6 +186,20 @@ export const ProductsAdmin = () => {
       return; // Evita enviar el formulario si los valores son negativos
     }
 
+    if (!/^\d+$/.test(stock)) {
+      setFormError(
+        "El stock debe contener solo números enteros sin punto ni coma."
+      );
+      return;
+    }
+
+    if (!/^\d+$/.test(price)) {
+      setFormError(
+        "El precio debe contener solo números enteros sin punto ni coma."
+      );
+      return;
+    }
+
     // Validación: nombre único en modo crear
     let nombreRepetido = false;
     if (modalMode === "create") {
@@ -200,8 +223,8 @@ export const ProductsAdmin = () => {
       return; // Evita enviar el formulario si el nombre ya está en uso
     }
     const confirmed = window.confirm(
-        "¿Estás seguro de que deseas guardar los cambios?"
-      );
+      "¿Estás seguro de que deseas guardar los cambios?"
+    );
 
     try {
       if (modalMode === "create") {
@@ -409,7 +432,7 @@ export const ProductsAdmin = () => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={closeModal}>
+          <Button variant="secondary" type="button" onClick={closeModal}>
             Cancelar
           </Button>
         </Modal.Footer>
